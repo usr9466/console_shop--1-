@@ -59,10 +59,6 @@ class UserView(View):
             print("> Your Password:")
             pw = self.custom_input()
             return username, pw
-            if found_user is not None:
-                print("> You are logged in!")
-            else:
-                print("> Username not registered")
             
 
     '''
