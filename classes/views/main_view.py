@@ -34,10 +34,10 @@ class MainView(View):
         self.user_controller.post(admin_user)
         self.user_controller.post(test_user)
 
-        for product in products:
+        for product in products.values():
             self.product_controller.post(product)
         
-        for review in reviews:
+        for review in reviews.values():
             self.review_controller.post(review)
 
 
@@ -46,41 +46,58 @@ class MainView(View):
     '''
         generate the predefined products for testing
     '''    
-    def generate_products():
+    def generate_products(self):
         products = {}
-        reviews = []
+        reviews = {}
 
-        products["P101"] = Product("Shampoo", "Smells like starwberries!", 4.3, 6.5, 120, "Bodyproducts")
-        reviews.append(Review("I lost all my hair!", "This shampoo is awefull, im bald now. 0/10, cant recommend!", "P101"))
-        reviews.append(Review("Smells awesome!", "I love the smell of strawberries!", "P101"))
+        p1 = Product("Shampoo", "Smells like starwberries!", 4.3, 6.5, 120, "Bodyproducts")
+        products[p1.entity_id] = p1
+        self.add_to(reviews,Review("I lost all my hair!", "This shampoo is awefull, im bald now. 0/10, cant recommend!", p1.entity_id) )
+        self.add_to(reviews, Review("Smells awesome!", "I love the smell of strawberries!", p1.entity_id))
 
-        products["Z1111"] = Product("Scissors", "Cuts everything, literally everything", 2.1, 3.2, 15, "household items")
+        p2 = Product("Scissors", "Cuts everything, literally everything", 2.1, 3.2, 15, "household items")
+        products[p2.entity_id] = p2 
 
-        products["E1234"] = Product("TV", "Curve screen TV", 388, 518, 12, "electronics")
-        reviews.append(Review("Great pictures", "Love those 120 FPS", "E1234"))
-        reviews.append(Review("Sound is odd", "Sound is very bad, might be malfunctioning", "E1234"))
+        p3 = Product("TV", "Curve screen TV", 388, 518, 12, "electronics")
+        products[p3.entity_id] = p3
 
-        products["P3001"] = Product("Football", "Standard sized football", 4.0, 6.0, 20, "sports")
-        reviews.append(Review("Broke my leg", "Tripped over it and broke my leg, cant be my fault", "P3001"))
-        reviews.append(Review("Score!", "First ball i was ever able to score with, awesome!", "P3001"))
+        self.add_to(reviews,Review("Great pictures", "Love those 120 FPS",p3.entity_id))
+        self.add_to(reviews,Review("Sound is odd", "Sound is very bad, might be malfunctioning", p3.entity_id))
 
-        products["401Z12"] = Product("Book", "Plain, old book", 2.0, 4.0, 27, "books")
+        p4 = Product("Football", "Standard sized football", 4.0, 6.0, 20, "sports")
+        products[p4.entity_id] = p4
+        self.add_to(reviews,Review("Broke my leg", "Tripped over it and broke my leg, cant be my fault", p4.entity_id))
+        self.add_to(reviews,Review("Score!", "First ball i was ever able to score with, awesome!", p4.entity_id))
 
-        products["Z500"] = Product("Parfume", "You are gonna smell like a champ!", 47.0, 61.0, 999, "parfumes")
-        reviews.append(Review("Literally smelled like a champ..",
-                            "I didnt know that this was meant literally, i smelled extremly sweaty because of it..", "Z500"))
 
-        products["X601"] = Product("Guitare", "For your very own garage band!", 134.0, 161.0, 3, "musical instruments")
+        p5 = Product("Book", "Plain, old book", 2.0, 4.0, 27, "books")
+        products[p5.entity_id] = p5 
 
-        products["700123"] = Product( "PC Screen", "12 Inch PC screen!", 150.0, 170.0, 74, "electronics")
+        p6 = Product("Parfume", "You are gonna smell like a champ!", 47.0, 61.0, 999, "parfumes")
+        products[p6.entity_id] = p6 
+        self.add_to(reviews,Review("Literally smelled like a champ..",
+                            "I didnt know that this was meant literally, i smelled extremly sweaty because of it..", p6.entity_id))
 
-        products["N801"] = Product( "Trash can", "Can store up to 12 liters of trash", 8.0, 11.0, 13, "household items")
-        reviews.append(Review("Amazing volume", "I can put so much trash in this, its amazing", "N801"))
+        p7 = Product("Guitare", "For your very own garage band!", 134.0, 161.0, 3, "musical instruments")
+        products[p7.entity_id] = p7
 
-        products["ZT109"] = Product("Snickers", "Delicious chocolate bar", 1.5, 1.8, 420, "snacks")
+        p8 = Product( "PC Screen", "12 Inch PC screen!", 150.0, 170.0, 74, "electronics")
+        products[p8.entity_id] = p8 
+
+        p9 = Product( "Trash can", "Can store up to 12 liters of trash", 8.0, 11.0, 13, "household items")
+        products[p9.entity_id] = p9 
+        self.add_to(reviews,Review("Amazing volume", "I can put so much trash in this, its amazing", p9.entity_id))
+
+        p10 = Product("Snickers", "Delicious chocolate bar", 1.5, 1.8, 420, "snacks")
+        products[p10.entity_id] = p10 
 
         return products, reviews
     
+    '''
+        helper function
+    '''
+    def add_to(self, list, object):
+        list[object.entity_id] = object
 
     '''
         this is the main shop loop

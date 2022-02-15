@@ -5,7 +5,7 @@ from classes.views.main_view import MainView
 '''
 if __name__ == '__main__':
     # create the ui
-    main_view = MainView('base ui view')
+    main_view = MainView()
 
     # start ui
     main_view.main_loop()

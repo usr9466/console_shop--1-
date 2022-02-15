@@ -7,4 +7,4 @@ class Model:
         init the base model and create a main primary key
     '''
     def __init__(self):
-        self.entity_id = uuid4()
+        self.entity_id = uuid4().hex[:4] #id with length = 4
