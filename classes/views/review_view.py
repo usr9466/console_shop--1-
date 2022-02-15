@@ -20,7 +20,11 @@ class ReviewView(View):
         while(not valid):
             print("> Ok. For which product do you want to write a review?")
             prod_id = self.custom_input()
-            valid = prod_id in product_ids or prod_id == 'q'
+            valid = prod_id in product_ids
+            if not valid:
+                print("Not a valid product id, pls choose")
+                for key in product_ids:
+                    print(key)
 
         print("> Please enter the heading of the review")
         heading = self.validate_input_loop("review_heading")
@@ -41,6 +45,10 @@ class ReviewView(View):
             print("> For which product do you want to see the reviews?")
             prod_id = self.custom_input()
             valid = prod_id in product_id2product
+            if not valid:
+                print("Not a valid product id, pls choose")
+                for key in product_id2product:
+                    print(key)
 
         print(f"> Here are the reviews for {prod_id}")
         i = 1

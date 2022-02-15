@@ -99,6 +99,23 @@ class MainView(View):
     def add_to(self, list, object):
         list[object.entity_id] = object
 
+    def print_actions(self):
+        print("------------------")
+        print("> createAccount")
+        print("> login")
+        print("> viewAccount")
+        print("> changeUser")
+        print("> viewProducts")
+        print("> addProduct")
+        print("> addToCart")
+        print("> viewReviews")
+        print("> checkout")
+        print("> writeReview")
+        print("> logout")
+        print("------------------")
+
+
+
     '''
         this is the main shop loop
         we provide the user interface by string input
@@ -107,37 +124,35 @@ class MainView(View):
         cur_user = None
         while True:
             print("> What do you want to do?")
+            self.print_actions()
             action = self.custom_input()
-
             if action == "createAccount":
                 new_acc = self.user_view.create_user()
                 self.user_controller.post(new_acc)
                 cur_user = new_acc
-
             elif action == "login":
                 possible_username, possible_password =  self.user_view.login()
                 cur_user = self.user_controller.login(possible_username, possible_password)
-
+                if(not cur_user): print("error during login")
+                else:
+                    print("login with: " + cur_user.username)
             elif action == "viewAccount":
                 if cur_user is None:
                     print("> Sorry you have to login or create a new account first!")
                 else:
                     cur_user.print()
-
             elif action == "changeUser":
                 if cur_user is None:
                     print("> Sorry you have to login or create a new account first!")
                 else:
                     cur_user = self.user_view.change_user(cur_user)
                     self.user_controller.put(cur_user.entity_id,cur_user)
-
             elif action == "viewProducts":
                 i = 0
                 for product in self.product_controller.get_all():
                     print(f"> Product {i}")
                     i += 1
                     product.describe()
-
             elif action == "addProduct":
                 if cur_user.role == "admin":
                     newProduct = self.product_view.create_product()
@@ -146,19 +161,16 @@ class MainView(View):
                     newProduct.describe()
                 else:
                     print("> Sorry, you are no admin, Only admins can add new products")
-
             elif action == "addToCart":
                 if cur_user is None:
                     print("> Sorry you have to login or create a new account first!")
                 else:
                     updated_user = self.user_view.add_to_cart(cur_user, self.product_controller.get_dict())
                     self.user_controller.put(updated_user.entity_id, updated_user)
-
             elif action == "viewReviews":
                 product_dict = self.product_controller.get_dict()
                 reviews = self.review_controller.get_all()
                 self.review_view.view_reviews(product_dict, reviews)
-
             elif action == "checkout":
                 if cur_user == None:
                     print("> Sorry you have to login to checkout!")
