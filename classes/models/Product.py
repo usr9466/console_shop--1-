@@ -1,6 +1,8 @@
-class Product:
-    def __init__(self, product_id, name, description, price_netto, price_brutto, in_stock, category):
-        self.product_id = product_id
+from classes.models.model import Model
+
+class Product(Model):
+    def __init__(self, name, description, price_netto, price_brutto, in_stock, category):
+        super(Product,self).__init__()
         self.name = name
         self.description = description
         self.price_netto = price_netto
@@ -9,7 +11,7 @@ class Product:
         self.category = category
 
     def describe(self):
-        print(f"> ID: {self.product_id}")
+        print(f"> ID: {self.entity_id}")
         print(f"> Name: {self.name}")
         print(f"> Description: {self.description}")
         print(f"> Preis exl. tax: {self.price_netto}")
