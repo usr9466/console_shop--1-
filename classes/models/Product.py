@@ -1,4 +1,4 @@
-from model import Model
+from classes.models.model import Model
 
 class Product(Model):
     def __init__(self, name, description, price_netto, price_brutto, in_stock, category):

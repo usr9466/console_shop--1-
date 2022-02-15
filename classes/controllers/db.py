@@ -1,10 +1,5 @@
 
 '''
-    basic db class
-'''
-from distutils.dep_util import newer
-
-'''
     base db controller for a given dictionary
 '''
 class DB:

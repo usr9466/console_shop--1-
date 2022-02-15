@@ -1,17 +1,13 @@
-from curses import curs_set
-import imp
-from view import View
-from product_view import ProductView
-from review_view import ReviewView
-from user_view import UserView
-
-from controllers.product_controller import ProductController
-from controllers.review_controller import ReviewController
-from controllers.user_controller import UserController
-
-from models.Product import Product
-from models.Review import Review
-from models.User import User
+from classes.views.view import View
+from classes.views.product_view import ProductView
+from classes.views.review_view import ReviewView
+from classes.views.user_view import UserView
+from classes.controllers.product_controller import ProductController
+from classes.controllers.review_controller import ReviewController
+from classes.controllers.user_controller import UserController
+from classes.models.Product import Product
+from classes.models.Review import Review
+from classes.models.User import User
 
 
 '''

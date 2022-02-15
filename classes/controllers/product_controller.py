@@ -1,4 +1,4 @@
-from db import DB
+from classes.controllers.db import DB
 
 '''
    Product Controller 

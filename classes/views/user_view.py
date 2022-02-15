@@ -1,4 +1,4 @@
-from view import View
+from classes.views.view import View
 from classes.models.User import User
 
 '''

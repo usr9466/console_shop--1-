@@ -6,6 +6,7 @@ import numpy as np
     we use this class to manage some basic print functions
 
 '''
+
 class View():
     '''
         the initialize method

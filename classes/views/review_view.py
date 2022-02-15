@@ -1,5 +1,5 @@
 from classes.models.Review import Review
-from view import View
+from classes.views.view import View
 
 '''
     the review interface

@@ -1,4 +1,4 @@
-from model import Model
+from classes.models.model import Model
 
 class Review(Model):
     def __init__(self, headline, text, product_id):
