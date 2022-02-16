@@ -53,12 +53,11 @@ class UserView(View):
         login is a getter with combined primary key: username, password <=> entity_id
     '''
     def login(self):
-        while True:
-            print("> Your Username:")
-            username = self.custom_input()
-            print("> Your Password:")
-            pw = self.custom_input()
-            return username, pw
+        print("> Your Username:")
+        username = self.custom_input()
+        print("> Your Password:")
+        pw = self.custom_input()
+        return username, pw
             
 
     '''
