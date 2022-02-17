@@ -24,7 +24,7 @@ class MainView(View):
         self.product_controller = ProductController()
         self.review_controller = ReviewController()
 
-        print('START: initialize backend : testing data ')
+        print('START: backend initialisierung - Daten werden getestet...')
         
         admin_user = User("admin", "admin", "admin", "admin", "12345", "admin")
         test_user = User("tester_firstname", "tester_lastname", "tester", "1.1.2020", "12345", "user")
@@ -100,19 +100,19 @@ class MainView(View):
         list[object.entity_id] = object
 
     def print_actions(self):
-        print("------------------")
-        print("> createAccount")
-        print("> login")
-        print("> viewAccount")
-        print("> changeUser")
-        print("> viewProducts")
-        print("> addProduct")
-        print("> addToCart")
-        print("> viewReviews")
-        print("> checkout")
-        print("> writeReview")
-        print("> logout")
-        print("------------------")
+        print("********************************************")
+        print("> createAccount - Account erstellen")
+        print("> login - Benutzer login")
+        print("> viewAccount -  Account Details ausgeben")
+        print("> changeUser - Nutzer ändern")
+        print("> viewProducts - Produktliste anzeigen")
+        print("> addProduct - Produkt hinzufügen")
+        print("> addToCart -  Produkt dem Warenkorb hinzufügen")
+        print("> viewReviews - Kundenbewertung anzeigen")
+        print("> checkout - Warenkorb auschecken")
+        print("> writeReview - Kundenbewertung schreiben")
+        print("> logout - Nutzer ausloggen")
+        print("********************************************")
 
 
 
@@ -123,7 +123,7 @@ class MainView(View):
     def main_loop(self):
         cur_user = None
         while True:
-            print("> What do you want to do?")
+            print("> Welche Aktion möchten Sie vornehemen?")
             self.print_actions()
             action = self.custom_input()
             if action == "createAccount":
@@ -135,35 +135,35 @@ class MainView(View):
                 cur_user = self.user_controller.login(possible_username, possible_password)
                 if(not cur_user): print("error during login")
                 else:
-                    print("login with: " + cur_user.username)
+                    print("eingeloggt mit User: " + cur_user.username)
             elif action == "viewAccount":
                 if cur_user is None:
-                    print("> Sorry you have to login or create a new account first!")
+                    print("> Bitte zuerst einen Account anlegen/Nutzer erstellen!")
                 else:
                     cur_user.print()
             elif action == "changeUser":
                 if cur_user is None:
-                    print("> Sorry you have to login or create a new account first!")
+                    print("> Bitte einloggen oder falls nicht geschehen einen Account anlegen!")
                 else:
                     cur_user = self.user_view.change_user(cur_user)
                     self.user_controller.put(cur_user.entity_id,cur_user)
             elif action == "viewProducts":
                 i = 0
                 for product in self.product_controller.get_all():
-                    print(f"> Product {i}")
+                    print(f"> Produkt: {i}")
                     i += 1
                     product.describe()
             elif action == "addProduct":
                 if cur_user.role == "admin":
                     newProduct = self.product_view.create_product()
                     self.product_controller.post(newProduct)
-                    print("Ok. We created a new product: ")
+                    print("Check -  Produkt erfolgreich angelegt: ")
                     newProduct.describe()
                 else:
-                    print("> Sorry, you are no admin, Only admins can add new products")
+                    print("> Bitte mit Admin Rechten anmelden, User können keine Produkte anlegen")
             elif action == "addToCart":
                 if cur_user is None:
-                    print("> Sorry you have to login or create a new account first!")
+                    print("> Bitte einloggen oder falls nicht geschehen einen Account anlegen!")
                 else:
                     updated_user = self.user_view.add_to_cart(cur_user, self.product_controller.get_dict())
                     self.user_controller.put(updated_user.entity_id, updated_user)
@@ -173,21 +173,21 @@ class MainView(View):
                 self.review_view.view_reviews(product_dict, reviews)
             elif action == "checkout":
                 if cur_user == None:
-                    print("> Sorry you have to login to checkout!")
+                    print("> Sie müssen angemeldet sein um einen Checkout zu machen!")
                 else:
                     self.user_view.checkout(cur_user)
                     cur_user.reset_cart()
                     self.user_controller.put(cur_user.entity_id, cur_user)
             elif action == "writeReview":
                 if cur_user == None:
-                    print("> Sorry you have to login to write a review!")
+                    print("> Sie müssen angemeldet sein um eine Kundenbewertung zu schreiben!")
                 else:
                     product_dict = self.product_controller.get_dict()
                     rev = self.review_view.write_review(product_dict)
                     response = self.review_controller.post(rev)
             elif action == "logout":
                 cur_user = None
-                print("> You are logged out!")
+                print("> Erfolgreich ausgeloggt!")
             else:
-                print("> Unkown action!")
+                print("> Unbekannte Funktion -  bitte nochmal eingeben..!")
 

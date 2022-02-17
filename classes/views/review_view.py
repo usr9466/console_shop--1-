@@ -18,18 +18,18 @@ class ReviewView(View):
 
         valid = False
         while(not valid):
-            print("> Ok. For which product do you want to write a review?")
+            print("> Für welches Produkt wollen Sie einen Bericht schreiben?")
             prod_id = self.custom_input()
             valid = prod_id in product_ids
             if not valid:
-                print("Not a valid product id, pls choose")
+                print("Keine valide Eingabe, bitte erneut eingeben...")
                 for key in product_ids:
                     print(key)
 
-        print("> Please enter the heading of the review")
+        print("> Bitte geben Sie die Überschrift ihrer Bewertung ein")
         heading = self.validate_input_loop("review_heading")
 
-        print("> Please enter your review")
+        print("> Bitte geben Sie den Inhalt ihres Berichtes ein")
         review_text = self.validate_input_loop("review_text")
 
 
@@ -42,15 +42,15 @@ class ReviewView(View):
         valid = False
         
         while not valid:
-            print("> For which product do you want to see the reviews?")
+            print("> Für welche Produkte wollen Sie die Berichte sehen?")
             prod_id = self.custom_input()
             valid = prod_id in product_id2product
             if not valid:
-                print("Not a valid product id, pls choose")
+                print("Keine valide Eingabe, bitte erneut eingeben...")
                 for key in product_id2product:
                     print(key)
 
-        print(f"> Here are the reviews for {prod_id}")
+        print(f"> Alle Berichte zu der Prdukt-ID: {prod_id}")
         i = 1
         for review in reviews:
             if review.product_id == prod_id:

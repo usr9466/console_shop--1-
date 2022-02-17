@@ -16,22 +16,22 @@ class ProductView(View):
         create a product and add it tho the db
     '''
     def create_product(self):
-        print("> What is the name of the product?")
+        print("> Wie lautet der Name ihres Produktes?")
         prod_name = self.custom_input()
 
-        print("> What is the product description?")
+        print("> Wie lautet die beschreibung des Produktes?")
         prod_descr = self.custom_input()
 
-        print("> What is the price excluding taxes?")
+        print("> Bitte setzen Sie den Preis ohne Steuern?")
         price_netto = self.custom_input()
 
-        print("> What is the price including taxes?")
+        print("> Bitte setzen Sie den Preis inklusive Steuern?")
         price_brutto = self.custom_input()
 
-        print("> What is the category of the product?")
+        print("> Wie lautet die Produktkategorie?")
         prod_cat = self.custom_input()
 
-        print("> What is the stock?")
+        print("> Wie hoch ist die Anzahl der Produkte?")
         prod_stock = self.custom_input()
 
         prod = Product(prod_id, prod_name, prod_descr, price_netto, price_brutto, prod_stock, prod_cat)

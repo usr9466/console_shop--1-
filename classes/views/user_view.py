@@ -16,29 +16,29 @@ class UserView(View):
         create a user
     '''
     def create_user(self):
-        print("> What is your first name?")
+        print("> Wie lautet ihr Vorname?")
         first_name = self.validate_input_loop("firstname")
 
-        print("> What is your last name?")
+        print("> Wie lautet ihr Nachname?")
         last_name = self.validate_input_loop("lastname")
 
-        print("> What is your birthday?")
+        print("> Wann sind Sie geboren?")
         birthday = self.validate_input_loop("birthday")
 
-        print("> What is your prefered username?")
+        print("> Wie lautet ihr Benutzername?")
         username = self.validate_input_loop("birthday")
 
-        print("> What is your password?")
+        print("> Wie soll ihr Passwort lauten?")
         pw = self.validate_input_loop("password")
 
-        print("> Thanks, we created a account for you!")
+        print("> Vielen Dank, Sie haben erfolgreich einen Benutzer angelegt!")
         return User(first_name, last_name, username, birthday, pw, "User")
 
     '''
         change the user
     '''
     def change_user(self,cur_acc):
-        print("> Which attribute do you want to change? (firstname, lastname, birthday, username, password")
+        print("> Welches Attribute wollen Sie anpassen? Optionen: firstname, lastname, birthday, username, password")
         done = False
         while not done:
             attribute = self.custom_input()
@@ -46,16 +46,16 @@ class UserView(View):
                 cur_acc = self.change_attribute(cur_acc, attribute)
                 done = True
             else:
-                print("> Not a valid attribute!")
+                print("> Leider kein gültiges Attribut gefunden!")
         return cur_acc
 
     '''
         login is a getter with combined primary key: username, password <=> entity_id
     '''
     def login(self):
-        print("> Your Username:")
+        print("> Benutzername:")
         username = self.custom_input()
-        print("> Your Password:")
+        print("> Passwort:")
         pw = self.custom_input()
         return username, pw
             
@@ -64,21 +64,21 @@ class UserView(View):
         addd to card
     '''
     def add_to_cart(self,cur_acc, product_id2product):
-        print("> Ok, please enter the product id you want to add to the cart")
+        print("> Ok, bitte geben Sie die Produkt ID ein die Sie hinzufügen möchten")
         prod_id = self.custom_input()
 
         if prod_id not in product_id2product:
-            print(f"> {prod_id} is not a valid Product ID!")
+            print(f"> {prod_id} keine gültige Produkt ID!")
             return
 
-        print(f"> How many products of {prod_id} you want to add to the cart?")
+        print(f"> Wie viele Produkte von {prod_id} möchten Sie ihrem Warenkorb hinzufügen?")
         amount = int(self.custom_input())
 
         if product_id2product[prod_id].in_stock >= amount:
             cur_acc.add_to_cart(product_id2product[prod_id], amount)
-            print(f"> Ok, we added {amount} products of {prod_id} to your cart")
+            print(f"> Ok, es wurden soeben {amount} Produkte mit der ID {prod_id} zu ihrem Warenkorb hinzugefügt")
         else:
-            print("> Sorry, there is not enough stock for this product")
+            print("> Entschuldigung, wir haben leider nicht genug auf Lager...")
         return cur_acc
 
     '''
@@ -86,43 +86,43 @@ class UserView(View):
     '''
     def checkout(self,cur_acc):
         bill = cur_acc.calc_bill()
-        print(f"> Ok. Your cart total is {bill} EUR")
+        print(f"> Alles zusammen kostet {bill} EUR")
 
-        print("> What is your first name?")
+        print("> Wie lautet ihr Vorname?")
         first_name = self.validate_input_loop("firstname")
 
-        print("> What is your last name?")
+        print("> Wie lautet ihr Nachname?")
         last_name = self.validate_input_loop("lastname")
 
-        print("> What is the delivery adresse?")
-        print("> Street: ")
+        print("> Wie lautet die Lieferadresse?")
+        print("> Straße: ")
         street = self.validate_input_loop("street")
 
-        print("> Housenumber")
+        print("> Hausnummer")
         housenumber = self.validate_input_loop("housenumber")
 
-        print("> ZIP Code")
+        print("> Postleitzahl")
         zipcode = self.validate_input_loop("zip")
 
-        print("> City")
+        print("> Stadt")
         city = self.validate_input_loop("city")
 
-        print("> Ok. Now we need your Credit Card details:")
+        print("> Ok. Bitte die Kreditkarteninformation hinzufügen:")
 
-        print("> Card Owner (first and second name")
+        print("> Kartenbesitzer Angaben(Name & Kartennummer)")
         cc_name = self.validate_input_loop("credit_card_name")
 
-        print("> Cred Card Number:")
+        print(">Kartennummer:")
         cc_number = self.validate_input_loop("credit_card_number")
 
         print("> CVV:")
         ccv = self.validate_input_loop("cvv")
 
-        print("> Valid until (month)")
+        print("> Gültig bis (Monat)")
         cc_month = self.validate_input_loop("credit_card_valid_month")
 
-        print("> Valid until (year)")
+        print("> Gültig bis (Jahr)")
         cc_year = self.validate_input_loop("credit_card_valid_year")
 
-        print("> Thank you for your order")
+        print("> Vielen Dank für ihre Bestellung")
         return first_name, last_name, street, housenumber, zipcode, city, cc_name, cc_number, ccv, cc_month, cc_year

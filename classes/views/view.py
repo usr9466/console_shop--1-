@@ -56,13 +56,13 @@ class View():
             if len(user_input) >= 3 and user_input[0].isupper():
                 return True, "valid"
             else:
-                return False, "> Sorry, your firstname must have at least 3 characters and start with an uppercase letter. Please enter a new one"
+                return False, "> Eingabefehler, ist Vorname muss min. 3 Zeichen lang sein und mit einem Großbuchstabe anfangen. Bitte nochmal eingeben"
 
         if type == "lastname":
             if len(user_input) >= 3 and user_input[0].isupper():
                 return True, "valid"
             else:
-                return False, "> Sorry, your lastname must have at least 3 characters and start with an uppercase letter. Please enter a new one"
+                return False, "> Eingabefehler, ist Nachname muss min. 3 Zeichen lang sein und mit einem Großbuchstabe anfangen. Bitte nochmal eingeben"
 
         if type == "password":
             if len(user_input) >= 8:
@@ -71,89 +71,89 @@ class View():
                         and any(x.isdigit() for x in user_input)):
                     return True, "valid"
                 else:
-                    return False, "> Sorry, your password must contain an upper-case letter, a lower-case letter and a number! Please enter a new one"
+                    return False, "> Eingabefehler, ihr Passwort muss einen Großbuchstabe, einen Kleinbuchstabe und mindestens eine Nummer enthalten"
             else:
-                return False, "> Sorry your password is to short, it must have at least 8 characters"
+                return False, "> Eingabefehler, ihr Passwort ist zu kurz es muss mindestens 8 Zeichen lang sein"
 
         if type == "username":
             if len(user_input) > 0:
                 return True, "valid"
             else:
-                return False, "> Sorry, your username must have at least 1 character. Please enter a new one"
+                return False, "> Eingabefehler, ihr Benutzername muss mindestens 1 Zeichen lang sein. Bitte erneut eingeben"
 
 
         if type == "birthday":
             if len(user_input) > 0:
                 return True, "valid"
             else:
-                return False, "> Sorry, your birthday must have at least 1 character. Please enter a new one"
+                return False, "> Eingabefehler, ihr Geburtsdatum muss mindesten 1 Zeichen lang sein. Bitte erneut eingeben"
 
         if type == "street":
             if len(user_input) >= 3 and user_input[0].isupper():
                 return True, "valid"
             else:
-                return False, "> Sorry, your street must have at least 3 characters and start with an uppercase letter. Please enter a new one"
+                return False, "> Eingabefehler, ihre Straße muss mindestens 3 Zeichen lang sein und mit einem Großbuchstabe anfangen. Bitte erneut eingeben"
 
         if type == "housenumber":
             if len(user_input) > 0 and user_input.isdigit():
                 return True, "valid"
             else:
-                return False, "> Sorry, your housenumber can only include digits and cant be emtpy! Please enter a new one"
+                return False, "> Eingabefehler, die Hausnummer kann nur Zahlen enthalten und darf nicht leer sein. Bitte erneut eingeben"
 
         if type == "city":
             if len(user_input) >= 3 and user_input[0].isupper():
                 return True, "valid"
             else:
-                return False, "> Sorry, your city must have at least 3 characters and start with an uppercase letter. Please enter a new one"
+                return False, "> Eingabefehler, die Stadt muss mindesten 3 Zeichen lang sein und mit einem Großbuchstabe anfangen. Bitte erneut eingeben"
 
         if type == "zip":
             if len(user_input) == 5 and user_input.isdigit():
                 return True, "valid"
             else:
-                return False, "> Sorry, your zip code has to be exactly 5 digits! Please enter a new one"
+                return False, "> Eingabefehler, die Postleitzahl muss genau 5 Zahlen enthalten. Bitte erneut eingeben"
 
         if type == "credit_card_name":
             if len(user_input) >= 6 and any(x.isspace() for x in user_input):
                 return True, "valid"
             else:
-                return False, "> Sorry, your Credit Card Name must be at least 6 characters and conatain a whitespace seperator between first- and lastname! Please enter a new one"
+                return False, "> Eingabefehler, der Kreditkartenname muss mindestens 6 Zeichen lang sein und ein Leerzeichen zwischen Vor- und Nachname enthalten. Bitte erneut eingeben"
 
         if type == "credit_card_number":
             user_input = user_input.replace(" ", "")
             if len(user_input) == 16 and user_input.isdigit():
                 return True, "valid"
             else:
-                return False, "> Sorry, your Credit Card Number must contain exactly 16 digits! Please enter a new one"
+                return False, "> Eingabefehler, die Kreditkartennummer muss genau 16 Zahlen enthalten. Bitte erneut eingeben"
 
         if type == "cvv":
             if len(user_input) == 3 and user_input.isdigit():
                 return True, "valid"
             else:
-                return False, "> Sorry, your Credit Card CVV must contain exactly 3 digits! Please enter a new one"
+                return False, "> Eingabefehler, die Kreditkartencode muss genau 3 Zahlen enthalten. Bitte erneut eingeben"
 
         if type == "credit_card_valid_month":
             if user_input.isdigit() and 1 <= int(user_input) <= 12:
                 return True, "valid"
             else:
-                return False, "> Sorry, your credit card valid until month has to be a digit between 1 and 12. Please enter a new one"
+                return False, "> Eingabefehler, die Angabe des Monats muss eine Zahl zwischen 1 und 12 enthalten. Bitte erneut eingeben"
 
         if type == "credit_card_valid_year":
             if user_input.isdigit() and int(user_input) >= 2020:
                 return True, "valid"
             else:
-                return False, "> Sorry, your credit card valid until year has to be a digit larger than 2020. Please enter a new one"
+                return False, "> Eingabefehler, die Angabe der Jahres muss größer gleich 2020 sein"
 
         if type == "review_heading":
             if len(user_input) >= 3:
                 return True, "valid"
             else:
-                return False, "> Sorry, your review heading has to be longer than 3 characters. Please enter a new one"
+                return False, "> Eingabefehler, die Überschrift ihrer Bewertung muss mehr als 3 Zeichen entahlten. Bitte erneut eingeben"
 
         if type == "review_text":
             if len(user_input) >= 3:
                 return True, "valid"
             else:
-                return False, "> Sorry, your review text has to be longer than 3 characters. Please enter a new one"
+                return False, "> Eingabefehler, der Text der Bewertung muss mehr als 3 Zeichen entahlten. Bitte erneut eingeben"
 
 
     '''
@@ -161,24 +161,23 @@ class View():
     '''
     def change_attribute(self,cur_obj, attribute):
         if attribute == "firstname":
-            print("> Your new firstname:")
+            print("> Neuer Vorname:")
             user_input = self.validate_input_loop("firstname")
-            print("> Ok, we changed your first name")
+            print("> Ok, Vorname wurde geändert")
         if attribute == "lastname":
-            print("> Your new lastname:")
+            print("> Neuer Nachname:")
             user_input = self.validate_input_loop("lastname")
-            print("> Ok, we changed your last name")
+            print("> Ok, Nachname wurde geändert")
         if attribute == "birthday":
-            print("> Your new birthday:")
+            print("> Neues Geburtsdatum:")
             user_input = self.validate_input_loop("birthday")
-            print("> Ok, we changed your birthday")
+            print("> Ok, Geburtsdatum wurde geändert")
         if attribute == "username":
-            print("> Your new username:")
+            print("> Neuer Benutzername:")
             user_input = self.validate_input_loop("username")
-            print("> Ok, we changed your username")
+            print("> Ok, Benutzername wurde geändert")
         if attribute == "password":
-            print("> Your new password:")
+            print("> Neues Passwort:")
             user_input = self.validate_input_loop("password")
-            print("> Ok, we changed your password")
-        #TODO: check other changes (product, review)
+            print("> Ok, Passwort wurde geändert")
         setattr(cur_obj, attribute, user_input)
