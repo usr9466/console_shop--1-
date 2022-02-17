@@ -182,3 +182,4 @@ class View():
             print("> Ok, we changed your password")
         #TODO: check other changes (product, review)
         setattr(cur_obj, attribute, user_input)
+        return cur_obj
