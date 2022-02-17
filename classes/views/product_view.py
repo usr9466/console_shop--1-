@@ -16,6 +16,10 @@ class ProductView(View):
         create a product and add it tho the db
     '''
     def create_product(self):
+
+        print("> What is the new Product ID?")
+        prod_id = self.custom_input()
+
         print("> What is the name of the product?")
         prod_name = self.custom_input()
 
@@ -34,6 +38,6 @@ class ProductView(View):
         print("> What is the stock?")
         prod_stock = self.custom_input()
 
-        prod = Product(prod_id, prod_name, prod_descr, price_netto, price_brutto, prod_stock, prod_cat)
-        
+        prod = Product(prod_name, prod_descr, price_netto, price_brutto, prod_stock, prod_cat)
+        prod.entity_id = prod_id
         return prod

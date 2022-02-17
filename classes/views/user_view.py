@@ -16,6 +16,9 @@ class UserView(View):
         create a user
     '''
     def create_user(self):
+        print("> What is your user id?")
+        user_id = self.custom_input()
+
         print("> What is your first name?")
         first_name = self.validate_input_loop("firstname")
 
@@ -32,7 +35,9 @@ class UserView(View):
         pw = self.validate_input_loop("password")
 
         print("> Thanks, we created a account for you!")
-        return User(first_name, last_name, username, birthday, pw, "User")
+        user = User(first_name, last_name, username, birthday, pw, "User")
+        user.entity_id = user_id
+        return user
 
     '''
         change the user
